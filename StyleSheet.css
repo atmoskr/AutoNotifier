@@ -1,0 +1,42 @@
+﻿h1, h2, h3, h4, span {
+    font-family: "맑은 고딕";
+}
+
+
+h2 {
+    color: green;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    white-space: -moz-pre-wrap !important; /* Mozilla, since 1999 */
+    white-space: -webkit-pre-wrap; /*Chrome & Safari */
+    white-space: -pre-wrap; /* Opera 4-6 */
+    white-space: -o-pre-wrap; /* Opera 7 */
+    white-space: pre-wrap; /* css-3 */
+    word-wrap: break-word; /* Internet Explorer 5.5+ */
+    word-break: break-all;
+    white-space: normal;
+}
+
+tr {
+    height: 33.0pt
+}
+
+th, td {
+    word-break: break-all;
+    display: inline-block;
+    font-size: 10.0pt;
+    font-family: "맑은 고딕";
+    border-left: 1.0pt solid windowtext;
+    border-right: 1.0pt solid windowtext;
+    border-top: 1.0pt solid windowtext;
+    border-bottom: 1.0pt solid windowtext;
+    padding: 0cm 5.4pt;
+    border-collapse: collapse;
+}
+
+span {
+    font-size: 10.0pt;
+}
