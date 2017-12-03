@@ -102,7 +102,7 @@ def update_clock():
     #now = time.strftime("%M:%S")
 
     lbl_CurrentTime.configure(text=now)
-    
+
     if now == ent_ExportTime.get() and time.strftime('%w') not in ('6', '0'):
         cbo_TeamSelection.set('all')
         login_diva(methods[0])
@@ -149,10 +149,10 @@ def login_diva(method):
     time.sleep(5)
 
     browser.find_element_by_xpath("//*[@class='btn btn-warning dropdown-toggle  btn-sm']").click()
-    time.sleep(2)
+    time.sleep(5)
 
     browser.find_element_by_xpath("//*[@class='glyphicon glyphicon-globe']").click()
-    time.sleep(2)
+    time.sleep(5)
 
     if method == methods[0]:
         #export all
