@@ -11,7 +11,7 @@ logger.setLevel(logging.DEBUG)
 
 formatter = logging.Formatter('%(asctime)s:%(levelname)s:%(funcName)s:%(message)s')
 
-log_file_handler = logging.FileHandler('AutoNotifier.log')
+log_file_handler = logging.FileHandler(r'log\AutoNotifier.log')
 log_file_handler.setLevel(logging.INFO)
 log_file_handler.setFormatter(formatter)
 
@@ -53,6 +53,9 @@ from email.mime.text import MIMEText
 # filter_team(team)
 import datetime as dt
 from dateutil.relativedelta import relativedelta
+
+# get latest file in the DIVA folder
+import glob
 
 download_path = os.path.join(os.getenv('USERPROFILE'), 'Downloads')
 base_path = r'D:\DIVA'
@@ -159,12 +162,13 @@ def login_diva(method):
         browser.execute_script("document.for_export4.submit()")
     else:
         #copy existing DIVA to Download
-        pass    #추가필요
+        list_of_files = glob.glob(os.path.join(base_path, '*'))
+        latest_file = max(list_of_files, key=os.path.getctime)
+        shutil.move(latest_file, download_path)
 
 def file_manager(action):
     logger.debug('function called')
     global full_path
-
 
     exist = False;
 
@@ -352,7 +356,8 @@ def email(team):
     # and message to send - here it is sent as one string.
     s.sendmail(me, recipients + cc, msg.as_string())
     s.quit()
-    print(dt.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + ' email sent')
+    # print(dt.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + ' email sent')
+    logger.info('email sent')
 
 def filter_team(team):
     logger.debug('function called')
@@ -435,7 +440,8 @@ def filter_team(team):
     #del(filtered_sheet['Dealer'])
     #del(filtered_sheet['last touch'])
 
-    print(dt.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + ' filtered {}'.format(team))
+    # print(dt.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + ' filtered {}'.format(team))
+    logger.info(team)
 
 def stripWE(word):
     w = word.strip().replace('\n',' ').replace('\t','').replace('\r','').replace(u'\xa0', u' ')
